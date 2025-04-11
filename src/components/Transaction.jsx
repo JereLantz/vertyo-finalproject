@@ -1,9 +1,9 @@
 export default function Transacion(){
     return (
-        <div>
-        <p>Kuvaus</p>
-        <p>Määrä</p>
-        <button>Poista</button>
+        <div className="flex m-2 p-3 border border-black">
+        <p className="m-2">Kuvaus</p>
+        <p className="m-2">Määrä</p>
+        <button className="py-2 px-1.5 mx-1 rounded-xl bg-cyan-300 hover:bg-cyan-500">Poista</button>
         </div>
     )
 }

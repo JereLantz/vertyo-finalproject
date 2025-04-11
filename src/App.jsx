@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <h1>Budget tracker</h1>
+      <h1 className="font-bold text-3xl m-3 p-3">Budget tracker</h1>
       <TotalTracker />
       <AddNewTransaction />
       <TransactionsDisplay />
