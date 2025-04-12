@@ -1,4 +1,4 @@
-export default function Transacion(){
+export default function Transaction(){
     return (
         <div className="flex m-2 p-3 border border-black">
         <p className="m-2">Kuvaus</p>

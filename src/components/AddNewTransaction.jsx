@@ -1,4 +1,9 @@
+import { use } from "react"
+import { TransactionContext } from "../context/TransactionsContext"
+
 export default function AddNewTransaction(){
+    const {AddNewTransaction} = use(TransactionContext)
+
     const inputStyle = "border rounded mx-2"
     return(
         <div className="m-2">
@@ -11,7 +16,7 @@ export default function AddNewTransaction(){
                 <label htmlFor="newTaAmount" className="font-bold">Summa:</label>
                 <input name="amount" id="newTaAmount" className={inputStyle}/>
                 </div>
-                <button type="submit" className="rounded-xl p-2 bg-blue-400 hover:bg-blue-500">
+                <button onClick={AddNewTransaction} type="submit" className="rounded-xl p-2 bg-blue-400 hover:bg-blue-500">
                     Lisää uusi tapahtuma
                 </button>
             </form>
