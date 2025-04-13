@@ -8,9 +8,17 @@ export const TransactionContext = createContext({
     deleteTransaction: ()=>{},
 })
 
+const dummyData = [
+    {id:43432, description:"Palkka", amount:3434},
+    {id:90584, description:"Ruoka", amount:-50},
+    {id:239048, description:"sähkölasku", amount:-200},
+    {id:8934, description:"Kahvi", amount:-300},
+    {id:93285, description:"Lotto", amount:5},
+]
+
 export default function TransactionContextProvider({children}){
-    const [transactions, setTransactions] = useState([])
-    const [total, setTotal] = useState(0)
+    const [transactions, setTransactions] = useState(dummyData)
+    const [total, setTotal] = useState(transactions.reduce((acc,item)=> acc+item.amount,0))
 
     function addNewTransaction(newTransaction){
         newTransaction.id = Math.random()
