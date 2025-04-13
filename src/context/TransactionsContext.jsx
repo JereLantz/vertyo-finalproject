@@ -7,14 +7,17 @@ export const TransactionContext = createContext({
     deleteTransaction: ()=>{},
 })
 
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 export default function TransactionContextProvider({children}){
     const [transactions, setTransactions] = useState([])
 
     function addNewTransaction(newTransaction){
-        //TODO:
-        console.log("add")
         newTransaction.id = Math.random()
-        console.log(newTransaction)
+
+        setTransactions((p)=>[...p, newTransaction])
     }
 
     function deleteTransaction(id){
