@@ -23,7 +23,6 @@ export default function AddNewTransaction(){
         }
 
         const newTra = {
-            id: Math.random(),
             description,
             amount,
         }

@@ -13,6 +13,8 @@ export default function TransactionContextProvider({children}){
     function addNewTransaction(newTransaction){
         //TODO:
         console.log("add")
+        newTransaction.id = Math.random()
+        console.log(newTransaction)
     }
 
     function deleteTransaction(id){
