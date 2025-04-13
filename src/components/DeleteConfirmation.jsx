@@ -1,22 +1,23 @@
-export default function DeleteConfirmation({transaction}){
+import { use } from "react"
+import { TransactionContext } from "../context/TransactionsContext"
+
+export default function DeleteConfirmation(){
+    const {cancelDelete, itemToDelete, deleteTransaction} = use(TransactionContext)
     function onConfirm(){
-        return true
+        deleteTransaction(itemToDelete)
     }
 
     function onCancel(){
-        return false
+        cancelDelete()
     }
+
     return(
         <div>
             <h2>
-                Oletko varma?
-            </h2>
-            <p>
                 Haluatko varmasti poistaa tämän tapahtuman?
-            </p>
-
-            <p>Kuvaus: {transaction.description}</p>
-            <p>Määrä: {transaction.amount}</p>
+            </h2>
+            <p>Kuvaus: {itemToDelete.description}</p>
+            <p>Määrä: {itemToDelete.amount}</p>
             <button onClick={onConfirm}>
                 Kyllä, poista
             </button>

@@ -2,10 +2,10 @@ import {TransactionContext} from "../context/TransactionsContext"
 import { use } from "react"
 
 export default function Transaction({transaction}){
-    const {deleteTransaction} = use(TransactionContext)
+    const {showDeleteConfirm} = use(TransactionContext)
 
-    function handleDelete(id){
-        deleteTransaction(id)
+    function handleDelete(itemToDelete){
+        showDeleteConfirm(itemToDelete)
     }
 
     return (
