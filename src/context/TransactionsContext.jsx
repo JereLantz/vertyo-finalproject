@@ -22,6 +22,7 @@ export default function TransactionContextProvider({children}){
 
     function deleteTransaction(id){
         //TODO:
+        console.log("delete", id)
     }
 
     const ctxValue ={
