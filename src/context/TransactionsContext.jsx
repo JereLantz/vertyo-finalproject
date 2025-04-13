@@ -20,9 +20,10 @@ export default function TransactionContextProvider({children}){
         setTotal((p)=>p+Number(newTransaction.amount))
     }
 
-    function deleteTransaction(id){
-        //TODO:
-        console.log("delete", id)
+    function deleteTransaction(itemToDel){
+        setTransactions((p)=>p.filter(item=> item.id != itemToDel.id))
+
+        setTotal(p=>p-(Number(itemToDel.amount)))
     }
 
     const ctxValue ={
