@@ -15,7 +15,7 @@ export default function TransactionContextProvider({children}){
     function addNewTransaction(newTransaction){
         newTransaction.id = Math.random()
 
-        setTransactions((p)=>[...p, newTransaction])
+        setTransactions((p)=>[newTransaction,...p])
 
         setTotal((p)=>p+Number(newTransaction.amount))
     }
