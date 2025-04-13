@@ -3,21 +3,21 @@ import { createContext } from "react";
 
 export const TransactionContext = createContext({
     savedTransactions:[],
+    totalSum: 0,
     addNewTransaction: ()=>{},
     deleteTransaction: ()=>{},
 })
 
-function sleep(ms){
-    return new Promise(resolve => setTimeout(resolve, ms))
-}
-
 export default function TransactionContextProvider({children}){
     const [transactions, setTransactions] = useState([])
+    const [total, setTotal] = useState(0)
 
     function addNewTransaction(newTransaction){
         newTransaction.id = Math.random()
 
         setTransactions((p)=>[...p, newTransaction])
+
+        setTotal((p)=>p+Number(newTransaction.amount))
     }
 
     function deleteTransaction(id){
@@ -27,6 +27,7 @@ export default function TransactionContextProvider({children}){
 
     const ctxValue ={
         savedTransactions:transactions,
+        totalSum: total,
         addNewTransaction,
         deleteTransaction,
     }
