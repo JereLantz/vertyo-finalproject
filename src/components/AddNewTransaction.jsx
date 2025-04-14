@@ -24,14 +24,14 @@ export default function AddNewTransaction(){
 
         const newTra = {
             description,
-            amount,
+            amount:amountNum,
         }
         console.log(errors)
         
         if(errors.length > 0){
             return {errors, enteredValues: {
                 description,
-                amount,
+                amount:amountNum,
             }}
         }
         addNewTransaction(newTra)

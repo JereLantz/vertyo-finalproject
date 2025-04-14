@@ -10,9 +10,9 @@ function App() {
   return (
     <>
       <TransactionContextProvider>
-            <Modal>
-                <DeleteConfirmation />
-            </Modal>
+          <Modal>
+              <DeleteConfirmation />
+          </Modal>
           <h1 className="font-bold text-3xl m-3 p-3">Budget tracker</h1>
           <TotalTracker />
           <AddNewTransaction />

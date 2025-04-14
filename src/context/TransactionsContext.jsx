@@ -6,6 +6,9 @@ export const TransactionContext = createContext({
     totalSum: 0,
     showDelModal: false,
     itemToDelete: {},
+    currentFilter: {},
+    setFilter: ()=>{}, 
+    removeFilter: ()=>{}, 
     showDeleteConfirm: ()=>{},
     addNewTransaction: ()=>{},
     deleteTransaction: ()=>{},
@@ -26,18 +29,27 @@ export default function TransactionContextProvider({children}){
     const [transactions, setTransactions] = useState(dummyData)
     const [total, setTotal] = useState(transactions.reduce((acc,item)=> acc+item.amount,0))
     const [showDelModal, setShowDelModal] = useState(false)
+    const [currentFilter, setCurrentFilter] = useState(null)
 
     function addNewTransaction(newTransaction){
         newTransaction.id = Math.random()
 
         setTransactions((p)=>[newTransaction,...p])
 
-        setTotal((p)=>p+Number(newTransaction.amount))
+        setTotal((p)=>p+newTransaction.amount)
     }
 
     function showDeleteConfirm(itemToDel){
         setShowDelModal(true)
         itemToDelete = itemToDel
+    }
+
+    function setFilter(filter){
+        setCurrentFilter(filter)
+    }
+
+    function removeFilter(){
+        setCurrentFilter(null)
     }
 
     function deleteTransaction(itemToDel){
@@ -57,6 +69,9 @@ export default function TransactionContextProvider({children}){
         totalSum: total,
         showDelModal,
         itemToDelete,
+        currentFilter,
+        setFilter,
+        removeFilter,
         showDeleteConfirm,
         addNewTransaction,
         deleteTransaction,
