@@ -23,12 +23,15 @@ export default function AddNewTransaction(){
             errors.push("Syötä summakenttää vain numeroja.")
         }
 
+        if(!category){
+            errors.push("Tapahtumalla tulisi olla luokka")
+        }
+
         const newTra = {
             description,
             amount:amountNum,
             category,
         }
-        console.log(errors)
         
         if(errors.length > 0){
             return {errors, enteredValues: newTra}
@@ -55,11 +58,11 @@ export default function AddNewTransaction(){
                 <div className="my-1">
                     <label htmlFor="newTaCategory" className="font-bold">Valitse kategoria: </label>
                     <br/>
-                    <select id="newTaCategory" defaultValue={formState.enteredValues?.category} name="newTaCategory" className="border rounded px-1">
-                        <option>Palkka</option>
-                        <option>Ruoka</option>
-                        <option>Laskut</option>
-                        <option>Viihde</option>
+                    <select id="newTaCategory" defaultValue={formState.enteredValues?.category} name="category" className="border rounded px-1">
+                        <option value="palkka">Palkka</option>
+                        <option value="ruoka">Ruoka</option>
+                        <option value="laskut">Laskut</option>
+                        <option value="viihde">Viihde</option>
                     </select>
                 </div>
                 {formState.errors && (
