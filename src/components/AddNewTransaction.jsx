@@ -8,6 +8,7 @@ export default function AddNewTransaction(){
         const errors = []
         const description = formData.get("description")
         const amount = formData.get("amount")
+        const category = formData.get("category")
 
         if(description.trim().length < 3){
             errors.push("Anna tapahtumalle kuvaus. Vähintään 3 merkkiä.")
@@ -25,14 +26,12 @@ export default function AddNewTransaction(){
         const newTra = {
             description,
             amount:amountNum,
+            category,
         }
         console.log(errors)
         
         if(errors.length > 0){
-            return {errors, enteredValues: {
-                description,
-                amount:amountNum,
-            }}
+            return {errors, enteredValues: newTra}
         }
         addNewTransaction(newTra)
 
@@ -52,6 +51,16 @@ export default function AddNewTransaction(){
                 <div className="my-1">
                     <label htmlFor="newTaAmount" className="font-bold">Summa:</label>
                     <input name="amount" id="newTaAmount" className={inputStyle} defaultValue={formState.enteredValues?.amount}/>
+                </div>
+                <div className="my-1">
+                    <label htmlFor="newTaCategory" className="font-bold">Valitse kategoria: </label>
+                    <br/>
+                    <select id="newTaCategory" defaultValue={formState.enteredValues?.category} name="newTaCategory" className="border rounded px-1">
+                        <option>Palkka</option>
+                        <option>Ruoka</option>
+                        <option>Laskut</option>
+                        <option>Viihde</option>
+                    </select>
                 </div>
                 {formState.errors && (
                     <div>
