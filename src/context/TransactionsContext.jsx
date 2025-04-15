@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createContext } from "react";
+import { dummyData } from "../dummyData";
 
 export const TransactionContext = createContext({
     savedTransactions:[],
@@ -14,14 +15,6 @@ export const TransactionContext = createContext({
     deleteTransaction: ()=>{},
     cancelDelete: ()=>{},
 })
-
-const dummyData = [
-    {id:43432, description:"Palkka", amount:3434},
-    {id:90584, description:"Ruoka", amount:-50},
-    {id:239048, description:"sähkölasku", amount:-200},
-    {id:8934, description:"Kahvi", amount:-300},
-    {id:93285, description:"Lotto", amount:5},
-]
 
 let itemToDelete = null
 
@@ -57,7 +50,7 @@ export default function TransactionContextProvider({children}){
 
         setTransactions((p)=>p.filter(item=> item.id != itemToDel.id))
 
-        setTotal(p=>p-(Number(itemToDel.amount)))
+        setTotal(p=>p-itemToDel.amount)
     }
 
     function cancelDelete(){

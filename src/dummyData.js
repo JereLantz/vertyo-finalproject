@@ -1,0 +1,22 @@
+export const dummyData = [
+  { "id": 1, "description": "Grocery Store Purchase", "amount": -45.75 },
+  { "id": 2, "description": "Salary Payment", "amount": 1500.00 },
+  { "id": 3, "description": "Electricity Bill", "amount": -120.30 },
+  { "id": 4, "description": "Freelance Project", "amount": 600.00 },
+  { "id": 5, "description": "Online Shopping", "amount": -89.99 },
+  { "id": 6, "description": "Stock Dividend", "amount": 42.50 },
+  { "id": 7, "description": "Gym Membership", "amount": -30.00 },
+  { "id": 8, "description": "Book Sale", "amount": 25.00 },
+  { "id": 9, "description": "Car Maintenance", "amount": -250.00 },
+  { "id": 10, "description": "Tax Refund", "amount": 320.00 },
+  { "id": 11, "description": "Movie Tickets", "amount": -27.00 },
+  { "id": 12, "description": "Dinner Out", "amount": -68.40 },
+  { "id": 13, "description": "Software Subscription", "amount": -15.99 },
+  { "id": 14, "description": "Sold Old Laptop", "amount": 450.00 },
+  { "id": 15, "description": "Coffee Shop", "amount": -9.25 },
+  { "id": 16, "description": "Interest Income", "amount": 18.75 },
+  { "id": 17, "description": "Water Bill", "amount": -34.80 },
+  { "id": 18, "description": "Gift Received", "amount": 200.00 },
+  { "id": 19, "description": "Gas Refill", "amount": -60.00 },
+  { "id": 20, "description": "E-book Sale", "amount": 12.00 }
+]
