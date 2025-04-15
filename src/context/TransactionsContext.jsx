@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createContext } from "react";
 import { dummyData } from "../dummyData";
 
 export const TransactionContext = createContext({
     savedTransactions:[],
-    totalSum: 0,
     showDelModal: false,
     itemToDelete: {},
     currentFilter: {},
@@ -20,9 +19,23 @@ let itemToDelete = null
 
 export default function TransactionContextProvider({children}){
     const [transactions, setTransactions] = useState(dummyData)
-    const [total, setTotal] = useState(transactions.reduce((acc,item)=> acc+item.amount,0))
     const [showDelModal, setShowDelModal] = useState(false)
     const [currentFilter, setCurrentFilter] = useState(null)
+
+    useEffect(()=>{
+        async function getAllTransactions(){
+            //TODO: Siirrä totalin laskeminen total komponenttiin.
+            // Nämä http funktiot omaan http.js tiedostoon?
+            const response = await fetch("https://www.cc.puv.fi/~e2301755/reactfinal/back.php")
+            if(!response.ok){
+                console.log("Network error fetching data")
+                return
+            }
+            const resData = await response.json()
+            console.log(resData)
+        }
+    getAllTransactions()
+    },[])
 
     function addNewTransaction(newTransaction){
         newTransaction.id = Math.random()
@@ -59,7 +72,6 @@ export default function TransactionContextProvider({children}){
 
     const ctxValue ={
         savedTransactions:transactions,
-        totalSum: total,
         showDelModal,
         itemToDelete,
         currentFilter,
