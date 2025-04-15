@@ -7,7 +7,7 @@ export default function TotalTracker(){
     return(
         <div className="bg-blue-400 p-2">
             <h2 className="text-2xl">Saldo:</h2>
-            <p className="text-xl">{totalSum} €</p>
+            <p className="text-xl">{totalSum.toFixed(2)} €</p>
         </div>
     )
 }
