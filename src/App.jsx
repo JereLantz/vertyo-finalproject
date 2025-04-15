@@ -1,5 +1,6 @@
 import AddNewTransaction from "./components/AddNewTransaction"
 import DeleteConfirmation from "./components/DeleteConfirmation"
+import DownloadDataCSV from "./components/DownloadDataCSV"
 import Filter from "./components/Filter"
 import Modal from "./components/Modal"
 import TotalTracker from "./components/TotalTracker"
@@ -16,6 +17,7 @@ function App() {
           <h1 className="font-bold text-3xl m-3 p-3">Budget tracker</h1>
           <TotalTracker />
           <AddNewTransaction />
+          <DownloadDataCSV/>
           <Filter />
           <TransactionsDisplay />
       </TransactionContextProvider>
