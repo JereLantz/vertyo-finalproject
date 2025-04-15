@@ -63,6 +63,8 @@ export default function AddNewTransaction(){
                         <option value="ruoka">Ruoka</option>
                         <option value="laskut">Laskut</option>
                         <option value="viihde">Viihde</option>
+                        <option value="uhkapelit">Uhkapelit</option>
+                        <option value="muu">Muu</option>
                     </select>
                 </div>
                 {formState.errors && (

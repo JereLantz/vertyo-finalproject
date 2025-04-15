@@ -37,11 +37,11 @@ export default function FilterForm(){
                     <input defaultChecked={formState.enteredValues?.income} id="filterIncome" name="filterIncome" type="checkbox" />
                 </div>
                 <button type="submit" className="rounded-xl p-2 mr-2 bg-emerald-200 hover:bg-emerald-300">
-                    Filtteröi
+                    Suodata
                 </button>
                 {currentFilter && (
                 <button type="button" onClick={removeFilter} className="rounded-xl p-2 bg-stone-300 hover:bg-stone-400">
-                    Poista filtteri
+                    Poista suodatus
                 </button>
                 )}
             </form>
