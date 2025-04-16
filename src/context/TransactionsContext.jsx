@@ -41,8 +41,6 @@ export default function TransactionContextProvider({children}){
         newTransaction.id = Math.random()
 
         setTransactions((p)=>[newTransaction,...p])
-
-        setTotal((p)=>p+newTransaction.amount)
     }
 
     function showDeleteConfirm(itemToDel){
@@ -62,8 +60,6 @@ export default function TransactionContextProvider({children}){
         setShowDelModal(false)
 
         setTransactions((p)=>p.filter(item=> item.id != itemToDel.id))
-
-        setTotal(p=>p-itemToDel.amount)
     }
 
     function cancelDelete(){
