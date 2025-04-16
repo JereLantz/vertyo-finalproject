@@ -37,6 +37,9 @@ export default function TransactionContextProvider({children}){
             if(!filter){
                 return true
             }
+            if(transa.description.toLowerCase().includes(filter.description.toLowerCase()) && filter.description != ""){
+                return true
+            }
             if(filter.entertainment == "on" && transa.category == "viihde"){
                 return true
             }
