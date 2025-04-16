@@ -60,7 +60,7 @@ export default function TransactionContextProvider({children}){
 
         newTransaction.id = resData.id
 
-        setTransactions((p)=>[newTransaction,...p])
+        setTransactions((p)=>[...p,newTransaction])
     }
 
     function showDeleteConfirm(itemToDel){

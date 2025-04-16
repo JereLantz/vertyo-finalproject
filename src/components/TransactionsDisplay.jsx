@@ -10,7 +10,7 @@ export default function TransactionsDisplay(){
             <h2 className="text-xl font-bold mx-2">Tapahtumat</h2>
         {savedTransactions.length >0 && (
             <div>
-            {savedTransactions.map((transa)=><Transaction key={transa.id} transaction={transa}/>)}
+            {savedTransactions.toReversed().map((transa)=><Transaction key={transa.id} transaction={transa}/>)}
             </div>)}
         </div>
     )
