@@ -3,6 +3,7 @@ import { createContext } from "react";
 
 export const TransactionContext = createContext({
     savedTransactions:[],
+    filteredTransactions: [],
     showDelModal: false,
     itemToDelete: {},
     currentFilter: {},
@@ -20,10 +21,44 @@ export default function TransactionContextProvider({children}){
     const [transactions, setTransactions] = useState([])
     const [showDelModal, setShowDelModal] = useState(false)
     const [currentFilter, setCurrentFilter] = useState(null)
+    const [filteredTransactions, setFilteredTransactions] = useState([])
 
     useEffect(()=>{
         getAllTransactions()
     },[])
+
+    useEffect(()=>{
+        filterTransactions(currentFilter)
+    },[transactions,currentFilter])
+
+    function filterTransactions(filter){
+        setFilteredTransactions(transactions.filter((transa)=>{
+            console.log(transa)
+            if(!filter){
+                return true
+            }
+            if(filter.entertainment == "on" && transa.category == "viihde"){
+                return true
+            }
+            if(filter.expence == "on" && transa.category == "laskut"){
+                return true
+            }
+            if(filter.food == "on" && transa.category == "ruoka"){
+                return true
+            }
+            if(filter.gambling == "on" && transa.category == "uhkapelit"){
+                return true
+            }
+            if(filter.income == "on" && transa.category == "palkka"){
+                return true
+            }
+            if(filter.other == "on" && transa.category == "muu"){
+                return true
+            }
+            return false
+        }))
+        console.log(filteredTransactions)
+    }
 
     async function getAllTransactions(){
         const response = await fetch("https://www.cc.puv.fi/~e2301755/reactfinal/back.php")
@@ -70,6 +105,7 @@ export default function TransactionContextProvider({children}){
 
     function setFilter(filter){
         setCurrentFilter(filter)
+
     }
 
     function removeFilter(){
@@ -101,6 +137,7 @@ export default function TransactionContextProvider({children}){
 
     const ctxValue ={
         savedTransactions:transactions,
+        filteredTransactions,
         showDelModal,
         itemToDelete,
         currentFilter,

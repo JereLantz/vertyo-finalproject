@@ -2,12 +2,12 @@ import { TransactionContext } from "../context/TransactionsContext"
 import { use, useEffect, useState } from "react"
 
 export default function TotalTracker(){
-    const {savedTransactions} = use(TransactionContext)
+    const {filteredTransactions} = use(TransactionContext)
     const [total, setTotal] = useState(0)
 
     useEffect(()=>{
-        setTotal(savedTransactions.reduce((acc,item)=> acc+Number(item.amount),0))
-    },[savedTransactions])
+        setTotal(filteredTransactions.reduce((acc,item)=> acc+Number(item.amount),0))
+    },[filteredTransactions])
 
     return(
         <div className="bg-blue-400 p-2">

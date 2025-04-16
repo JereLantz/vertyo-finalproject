@@ -24,6 +24,7 @@ export default function FilterForm(){
             other,
         }
 
+        console.log(enteredValues)
         setFilter(enteredValues)
 
         return {errors:null, enteredValues}
@@ -41,7 +42,7 @@ export default function FilterForm(){
                     <input defaultChecked={formState.enteredValues?.income} id="filterIncome" name="filterIncome" type="checkbox" />
                     <br/>
                     <label className="mr-1" htmlFor="filterFood">Ruoka:</label>
-                    <input defaultChecked={formState.enteredValues?.income} id="filterFood" name="filterFood" type="checkbox" />
+                    <input defaultChecked={formState.enteredValues?.food} id="filterFood" name="filterFood" type="checkbox" />
                     <br/>
                     <label className="mr-1" htmlFor="filterExpense">Laskut:</label>
                     <input defaultChecked={formState.enteredValues?.expence} id="filterExpense" name="filterExpense" type="checkbox" />
