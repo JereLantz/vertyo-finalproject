@@ -6,7 +6,7 @@ export default function TotalTracker(){
     const [total, setTotal] = useState(0)
 
     useEffect(()=>{
-        setTotal(savedTransactions.reduce((acc,item)=> acc+item.amount,0))
+        setTotal(savedTransactions.reduce((acc,item)=> acc+Number(item.amount),0))
     },[savedTransactions])
 
     return(
