@@ -76,8 +76,21 @@ export default function TransactionContextProvider({children}){
         setCurrentFilter(null)
     }
 
-    function deleteTransaction(itemToDel){
+    async function deleteTransaction(itemToDel){
         setShowDelModal(false)
+
+        const response = await fetch("https://www.cc.puv.fi/~e2301755/reactfinal/back.php",{
+            method:"DELETE",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({id:itemToDel.id})
+        })
+
+        if(!response.ok){
+            console.log("error deleting transaction")
+            return
+        }
 
         setTransactions((p)=>p.filter(item=> item.id != itemToDel.id))
     }
