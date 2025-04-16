@@ -22,21 +22,43 @@ export default function TransactionContextProvider({children}){
     const [currentFilter, setCurrentFilter] = useState(null)
 
     useEffect(()=>{
-        async function getAllTransactions(){
-            const response = await fetch("https://www.cc.puv.fi/~e2301755/reactfinal/back.php")
-            if(!response.ok){
-                console.log("Network error fetching data")
-                return
-            }
-            const resData = await response.json()
-            console.log(resData)
-            setTransactions(resData)
-        }
-    getAllTransactions()
+        getAllTransactions()
     },[])
 
-    function addNewTransaction(newTransaction){
-        newTransaction.id = Math.random()
+    async function getAllTransactions(){
+        const response = await fetch("https://www.cc.puv.fi/~e2301755/reactfinal/back.php")
+        if(!response.ok){
+            console.log("Network error fetching data")
+            return
+        }
+        const resData = await response.json()
+        console.log(resData)
+        setTransactions(resData)
+    }
+
+    async function addNewTransaction(newTransaction){
+        if(newTransaction.amount < 0){
+            newTransaction.type = "expense"
+        }
+        else{
+            newTransaction.type = "income"
+        }
+
+        const response = await fetch("https://www.cc.puv.fi/~e2301755/reactfinal/back.php",{
+            method: "POST",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(newTransaction)
+        })
+        
+        if(!response.ok){
+            console.log("error adding new transaction to the backend")
+            return
+        }
+        const resData = await response.json()
+
+        newTransaction.id = resData.id
 
         setTransactions((p)=>[newTransaction,...p])
     }
