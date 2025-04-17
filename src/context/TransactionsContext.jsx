@@ -13,6 +13,7 @@ export const TransactionContext = createContext({
     addNewTransaction: ()=>{},
     deleteTransaction: ()=>{},
     cancelDelete: ()=>{},
+    updateTransaction: ()=>{},
 })
 
 let itemToDelete = null
@@ -101,6 +102,30 @@ export default function TransactionContextProvider({children}){
         setTransactions((p)=>[...p,newTransaction])
     }
 
+    async function updateTransaction(updatedTransaction){
+        const response = await fetch("https://www.cc.puv.fi/~e2301755/reactfinal/back.php",{
+            method:"PUT",
+            body:JSON.stringify(updatedTransaction),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        if(!response.ok){
+            console.log("failed to update the transaction")
+            return {success:false}
+        }
+
+        setTransactions((p) => {
+            const updatedArr = [...p]
+            const updatedIndex = updatedArr.findIndex(ta=>ta.id === updatedTransaction.id)
+            updatedArr[updatedIndex] = updatedTransaction
+            return updatedArr
+        })
+
+
+        return {success:true}
+    }
+
     function showDeleteConfirm(itemToDel){
         setShowDelModal(true)
         itemToDelete = itemToDel
@@ -150,6 +175,7 @@ export default function TransactionContextProvider({children}){
         addNewTransaction,
         deleteTransaction,
         cancelDelete,
+        updateTransaction,
     }
     return(
         <TransactionContext.Provider value={ctxValue}>
