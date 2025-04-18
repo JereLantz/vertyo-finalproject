@@ -52,7 +52,7 @@ function calculateTotals(transactions){
 
     // Remove categories that were not expences
     for(let i = categoryTotal.length-1; i>=0; i--){
-        if(categoryTotal[i].value > 0){
+        if(categoryTotal[i].value >= 0){
             categoryTotal.splice(i,1)
         }
     }
