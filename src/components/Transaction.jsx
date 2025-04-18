@@ -12,26 +12,34 @@ export default function Transaction({transaction}){
         const newCategory = formData.get("category")
         const newAmountString = formData.get("amount")
 
-        if(newDesc.trim().length < 3){
-            errors.push("Anna kuvaus tapahtumalle. Vähintään 3 merkkiä")
-        }
-
         const newAmount = Number(newAmountString)
-        if(!newAmount){
-            errors.push("Syötä vain numeroita määrä kenttään.")
-        }
-
-        if(!newCategory || !newCategory.trim()){
-            errors.push("Tapahtumalla tulisi olla kategoria")
-        }
 
         const updatedTransaction = current.values
         updatedTransaction.description = newDesc
         updatedTransaction.category = newCategory
         updatedTransaction.amount = newAmount
 
+        if(newDesc.trim().length < 3){
+            errors.push("Anna kuvaus tapahtumalle. Vähintään 3 merkkiä")
+            updatedTransaction.description = transaction.description
+        }
+
+        if(!newAmount){
+            errors.push("Syötä vain numeroita määrä kenttään.")
+            updatedTransaction.amount = transaction.amount
+        }
+
+        if(!newCategory || !newCategory.trim()){
+            errors.push("Tapahtumalla tulisi olla kategoria")
+            updatedTransaction.category = transaction.category
+        }
+
+        if(errors.length > 0){
+            return {errors, values:updatedTransaction}
+        }
+
         const res = await updateTransaction(updatedTransaction)
-        console.log(res)
+
         if(!res.success){
             errors.push("Virhe tapahtuman päivityksessä")
         }
@@ -80,6 +88,14 @@ export default function Transaction({transaction}){
                         Vahvista
                     </button>
                 </form>
+
+                {formState.errors && (
+                <div>
+                    <ul className="text-red-400">
+                        {formState.errors.map((error)=> <li key={error}>{error}</li>)}
+                    </ul>
+                </div>
+                )}
             </>
         ):(
             <>
