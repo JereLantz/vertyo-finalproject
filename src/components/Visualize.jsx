@@ -1,5 +1,6 @@
 import { useState } from "react";
 import VisualizePieChart from "./VisualizePieChart"
+import VisualizeTotalLine from "./VisualizeTotalLine";
 
 export default function Visualize(){
     const [showCharts, setShowCharts] = useState(false)
@@ -15,8 +16,9 @@ export default function Visualize(){
             </button>
             {showCharts &&(
                 <div className="m-2">
-                <h3 className="text-xl font-bold">Menot</h3>
-            <VisualizePieChart />
+                    <h3 className="text-xl font-bold">Menot</h3>
+                    <VisualizePieChart />
+                    <VisualizeTotalLine />
                 </div>
             )}
         </div>
