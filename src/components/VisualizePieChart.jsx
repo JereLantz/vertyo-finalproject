@@ -3,7 +3,7 @@ import { PureComponent } from "react"
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 import {TransactionContext} from "../context/TransactionsContext"
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042','#ce4116']
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042','#ce4116', '#910d72']
 const RADIAN = Math.PI / 180
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -69,9 +69,11 @@ export default function VisualizePieChart(){
 
     console.log(data)
     return(
+        <div className="flex flex-row">
         <div>
-        {data.map((point, index)=> <p key={point.name} className="font-bold" style={{color:COLORS[index]}}>{point.name}</p>)
-        }
+            {data.map((point, index)=> <p key={point.name} className="font-bold" style={{color:COLORS[index]}}>{point.name}</p>)
+            }
+        </div>
         <div style={{ width: '100%', height: 200 }}>
         <ResponsiveContainer width="100%" height="100%">
             <PieChart width={400} height={400}>
