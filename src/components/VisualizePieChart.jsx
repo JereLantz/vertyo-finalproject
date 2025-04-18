@@ -24,27 +24,41 @@ function calculateTotals(transactions){
         {name: "viihde", value:0},
         {name: "uhkapelit", value:0},
         {name: "muu", value:0},
+        {name: "palkka", value:0},
     ]
 
     transactions.map((transa)=>{
         switch(transa.category){
             case "ruoka":
-                categoryTotal[0].value += Math.abs(Number(transa.amount))
+                categoryTotal[0].value += Number(transa.amount)
                 break
             case "laskut":
-                categoryTotal[1].value += Math.abs(Number(transa.amount))
+                categoryTotal[1].value += Number(transa.amount)
                 break
             case "viihde":
-                categoryTotal[2].value += Math.abs(Number(transa.amount))
+                categoryTotal[2].value += Number(transa.amount)
                 break
             case "uhkapelit":
-                categoryTotal[3].value += Math.abs(Number(transa.amount))
+                categoryTotal[3].value += Number(transa.amount)
                 break
             case "muu":
-                categoryTotal[4].value += Math.abs(Number(transa.amount))
+                categoryTotal[4].value += Number(transa.amount)
+                break
+            case "palkka":
+                categoryTotal[5].value += Number(transa.amount)
                 break
         }
     })
+
+    // Remove categories that were not expences
+    for(let i = categoryTotal.length-1; i>=0; i--){
+        if(categoryTotal[i].value > 0){
+            categoryTotal.splice(i,1)
+        }
+    }
+    for(let i=0; i<categoryTotal.length; i++){
+        categoryTotal[i].value = Math.abs(categoryTotal[i].value)
+    }
     return categoryTotal
 }
 
@@ -55,6 +69,9 @@ export default function VisualizePieChart(){
 
     console.log(data)
     return(
+        <div>
+        {data.map((point, index)=> <p key={point.name} className="font-bold" style={{color:COLORS[index]}}>{point.name}</p>)
+        }
         <div style={{ width: '100%', height: 200 }}>
         <ResponsiveContainer width="100%" height="100%">
             <PieChart width={400} height={400}>
@@ -66,6 +83,7 @@ export default function VisualizePieChart(){
                 </Pie>
             </PieChart>
         </ResponsiveContainer>
+        </div>
         </div>
     )
 }
