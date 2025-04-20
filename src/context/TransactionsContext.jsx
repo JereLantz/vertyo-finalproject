@@ -21,7 +21,15 @@ let itemToDelete = null
 export default function TransactionContextProvider({children}){
     const [transactions, setTransactions] = useState([])
     const [showDelModal, setShowDelModal] = useState(false)
-    const [currentFilter, setCurrentFilter] = useState(null)
+    const [currentFilter, setCurrentFilter] = useState({
+        description: "",
+        income: "on",
+        food: "on",
+        expence: "on",
+        entertainment: "on",
+        gambling: "on",
+        other: "on",
+    })
     const [filteredTransactions, setFilteredTransactions] = useState([])
 
     useEffect(()=>{
@@ -137,7 +145,15 @@ export default function TransactionContextProvider({children}){
     }
 
     function removeFilter(){
-        setCurrentFilter(null)
+        setCurrentFilter({
+            description: "",
+            income: "on",
+            food: "on",
+            expence: "on",
+            entertainment: "on",
+            gambling: "on",
+            other: "on",
+        })
     }
 
     async function deleteTransaction(itemToDel){

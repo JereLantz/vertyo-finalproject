@@ -1,7 +1,7 @@
 import { use, useActionState } from "react"
 import { TransactionContext } from "../context/TransactionsContext"
 
-export default function FilterForm(){
+export default function FilterForm({closeForm}){
     const {currentFilter, setFilter, removeFilter} = use(TransactionContext)
 
     function filterFormAction(_, formData){
@@ -27,7 +27,13 @@ export default function FilterForm(){
         console.log(enteredValues)
         setFilter(enteredValues)
 
+        closeForm()
         return {errors:null, enteredValues}
+    }
+
+    function handleRemoveFilter(){
+        removeFilter()
+        closeForm()
     }
 
     const [formState, formAction] = useActionState(filterFormAction, {errors:null, enteredValues:currentFilter})
@@ -60,7 +66,7 @@ export default function FilterForm(){
                     Suodata
                 </button>
                 {currentFilter && (
-                <button type="button" onClick={removeFilter} className="rounded-xl p-2 bg-stone-300 hover:bg-stone-400">
+                <button type="button" onClick={handleRemoveFilter} className="rounded-xl p-2 bg-stone-300 hover:bg-stone-400">
                     Poista suodatus
                 </button>
                 )}
