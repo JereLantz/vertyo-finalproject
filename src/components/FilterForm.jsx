@@ -62,11 +62,11 @@ export default function FilterForm({closeForm}){
                     <label className="mr-1" htmlFor="filterOther">Muu:</label>
                     <input defaultChecked={formState.enteredValues?.other} id="filterOther" name="filterOther" type="checkbox" />
                 </div>
-                <button type="submit" className="rounded-xl p-2 mr-2 bg-emerald-200 hover:bg-emerald-300">
+                <button type="submit" className="hover:cursor-pointer rounded-xl p-2 mr-2 bg-emerald-200 hover:bg-emerald-300">
                     Suodata
                 </button>
                 {currentFilter && (
-                <button type="button" onClick={handleRemoveFilter} className="rounded-xl p-2 bg-stone-300 hover:bg-stone-400">
+                <button type="button" onClick={handleRemoveFilter} className="hover:cursor-pointer rounded-xl p-2 bg-stone-300 hover:bg-stone-400">
                     Poista suodatus
                 </button>
                 )}

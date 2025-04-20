@@ -74,7 +74,7 @@ export default function AddNewTransaction(){
                         </ul>
                     </div>
                 )}
-                <button type="submit" className="rounded-xl py-1 px-2 my-2 bg-blue-400 hover:bg-blue-500">
+                <button type="submit" className="hover:cursor-pointer rounded-xl py-1 px-2 my-2 bg-blue-400 hover:bg-blue-500">
                     Lisää uusi tapahtuma
                 </button>
             </form>

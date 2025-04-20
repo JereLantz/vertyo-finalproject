@@ -54,7 +54,7 @@ export default function Filter(){
     }
     return(
         <div className="m-2">
-            <button onClick={handleToggle} className="p-2 my-2 rounded-xl bg-amber-100 hover:bg-amber-200">
+            <button onClick={handleToggle} className="hover:cursor-pointer p-2 my-2 rounded-xl bg-amber-100 hover:bg-amber-200">
                 Suodata tapahtumia
             </button>
             {displayFilter.length > 0 && (

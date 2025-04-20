@@ -81,10 +81,10 @@ export default function Transaction({transaction}){
                         <option value="muu">Muu</option>
                     </select>
                     <input name="amount"defaultValue={formState.values.amount} className="border rounded mr-2 px-1"/>
-                    <button disabled={isPending} onClick={handleCancelModify} className="py-2 px-1.5 mx-1 rounded-xl bg-stone-200 hover:bg-stone-300">
+                    <button disabled={isPending} onClick={handleCancelModify} className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-stone-200 hover:bg-stone-300">
                         Peruuta
                     </button>
-                    <button disabled={isPending} type="submit" className="py-2 px-1.5 mx-1 rounded-xl bg-yellow-200 hover:bg-yellow-300">
+                    <button disabled={isPending} type="submit" className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-yellow-200 hover:bg-yellow-300">
                         Vahvista
                     </button>
                 </form>
@@ -102,10 +102,10 @@ export default function Transaction({transaction}){
                 <p className="m-2">{transaction.description}</p>
                 <p className="m-2">{transaction.category}</p>
                 <p className="m-2">{transaction.amount}€</p>
-                <button onClick={handleModify} className="py-2 px-1.5 mx-1 rounded-xl bg-yellow-200 hover:bg-yellow-300">
+                <button onClick={handleModify} className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-yellow-200 hover:bg-yellow-300">
                     Muokkaa
                 </button>
-                <button onClick={()=> handleDelete(transaction)} className="py-2 px-1.5 mx-1 rounded-xl bg-red-300 hover:bg-red-400">
+                <button onClick={()=> handleDelete(transaction)} className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-red-300 hover:bg-red-400">
                     Poista
                 </button>
             </>

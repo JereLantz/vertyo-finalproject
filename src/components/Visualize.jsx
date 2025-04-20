@@ -11,7 +11,7 @@ export default function Visualize(){
 
     return(
         <div>
-            <button onClick={handleShowCharts} className="rounded-2xl mx-2 p-2 bg-yellow-100 hover:bg-yellow-200">
+            <button onClick={handleShowCharts} className="hover:cursor-pointer rounded-2xl mx-2 p-2 bg-yellow-100 hover:bg-yellow-200">
                 Visualisoi tapahtumia
             </button>
             {showCharts &&(
