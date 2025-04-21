@@ -11,11 +11,11 @@ export default function Visualize(){
 
     return(
         <div>
-            <button onClick={handleShowCharts} className="hover:cursor-pointer rounded-2xl mx-2 p-2 bg-yellow-100 hover:bg-yellow-200">
+            <button onClick={handleShowCharts} className="hover:cursor-pointer rounded-2xl p-2 bg-yellow-100 hover:bg-yellow-200">
                 Visualisoi tapahtumia
             </button>
             {showCharts &&(
-                <div className="m-2">
+                <div className="m-2 border p-2">
                     <h3 className="text-xl font-bold">Menot</h3>
                     <VisualizePieChart />
                     <VisualizeTotalLine />

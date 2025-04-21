@@ -81,7 +81,7 @@ export default function Transaction({transaction}){
                         <option value="muu">Muu</option>
                     </select>
                     <input name="amount"defaultValue={formState.values.amount} className="border rounded mr-2 px-1"/>
-                    <button disabled={isPending} onClick={handleCancelModify} className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-stone-200 hover:bg-stone-300">
+                    <button disabled={isPending} type={"button"} onClick={handleCancelModify} className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-stone-200 hover:bg-stone-300">
                         Peruuta
                     </button>
                     <button disabled={isPending} type="submit" className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-yellow-200 hover:bg-yellow-300">

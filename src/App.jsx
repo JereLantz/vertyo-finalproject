@@ -10,20 +10,22 @@ import TransactionContextProvider from "./context/TransactionsContext"
 
 function App() {
     return (
-        <>
+        <div className="m-2">
             <TransactionContextProvider>
                 <Modal>
                     <DeleteConfirmation />
                 </Modal>
                 <h1 className="font-bold text-3xl m-3 p-3">Budget tracker</h1>
-                <TotalTracker />
-                <AddNewTransaction />
+                <div className="border mb-3">
+                    <TotalTracker />
+                    <AddNewTransaction />
+                </div>
                 <DownloadDataCSV/>
                 <Filter />
                 <Visualize />
                 <TransactionsDisplay />
             </TransactionContextProvider>
-        </>
+        </div>
     )
 }
 
