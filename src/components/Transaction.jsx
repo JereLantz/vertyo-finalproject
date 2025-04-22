@@ -71,8 +71,8 @@ export default function Transaction({transaction}){
         {modify ? (
             <>
                 <form action={updateAction}>
-                    <input name="description" defaultValue={formState.values.description} className="border rounded mr-2 px-1"/>
-                    <select id="category" defaultValue={formState.values.category} name="category" className="border rounded px-1 mr-2 p-0.5">
+                    <input disabled={isPending} name="description" defaultValue={formState.values.description} className="border rounded mr-2 px-1"/>
+                    <select id="category" disabled={isPending} defaultValue={formState.values.category} name="category" className="border rounded px-1 mr-2 p-0.5">
                         <option value="palkka">Palkka</option>
                         <option value="ruoka">Ruoka</option>
                         <option value="laskut">Laskut</option>
@@ -80,7 +80,8 @@ export default function Transaction({transaction}){
                         <option value="uhkapelit">Uhkapelit</option>
                         <option value="muu">Muu</option>
                     </select>
-                    <input name="amount"defaultValue={formState.values.amount} className="border rounded mr-2 px-1"/>
+                    <input disabled={isPending} name="amount"defaultValue={formState.values.amount} className="border rounded mr-2 px-1"/>
+                    {isPending && <span className="m-2">Päivitetään...</span>}
                     <button disabled={isPending} type={"button"} onClick={handleCancelModify} className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-stone-200 hover:bg-stone-300">
                         Peruuta
                     </button>
