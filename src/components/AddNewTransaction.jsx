@@ -4,7 +4,7 @@ import { TransactionContext } from "../context/TransactionsContext"
 export default function AddNewTransaction(){
     const {addNewTransaction} = use(TransactionContext)
 
-    function addHobbyAction(_, formData){
+    async function addNewTransactionAction(_, formData){
         const errors = []
         const description = formData.get("description")
         const amount = formData.get("amount")
@@ -36,12 +36,17 @@ export default function AddNewTransaction(){
         if(errors.length > 0){
             return {errors, enteredValues: newTra}
         }
-        addNewTransaction(newTra)
+        const response = await addNewTransaction(newTra)
+
+        if(!response.success){
+            errors.push("Network error. Please check your connection and try again later")
+            return {errors, enteredValues: newTra}
+        }
 
         return {errors:null}
     }
 
-    const [formState, formAction] = useActionState(addHobbyAction, {errors:null})
+    const [formState, formAction, pending] = useActionState(addNewTransactionAction, {errors:null})
 
     const inputStyle = "border rounded mx-2"
     return(
@@ -74,7 +79,7 @@ export default function AddNewTransaction(){
                         </ul>
                     </div>
                 )}
-                <button type="submit" className="hover:cursor-pointer rounded-xl py-1 px-2 my-2 bg-blue-400 hover:bg-blue-500">
+                <button type="submit" disabled={pending} className="hover:cursor-pointer rounded-xl py-1 px-2 my-2 bg-blue-400 hover:bg-blue-500">
                     Lisää uusi tapahtuma
                 </button>
             </form>

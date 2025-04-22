@@ -101,13 +101,15 @@ export default function TransactionContextProvider({children}){
         
         if(!response.ok){
             console.log("error adding new transaction to the backend")
-            return
+            return {success:false}
         }
         const resData = await response.json()
 
         newTransaction.id = resData.id
 
         setTransactions((p)=>[...p,newTransaction])
+
+        return {success:true}
     }
 
     async function updateTransaction(updatedTransaction){
