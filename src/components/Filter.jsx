@@ -5,14 +5,14 @@ import { TransactionContext } from "../context/TransactionsContext";
 export default function Filter(){
     const [toggleFilterForm, setToggleFilterForm] = useState(false)
     const {currentFilter} = use(TransactionContext)
-    let filterString = "Suodatus Päällä: "
+    let filterString = ""
     const [displayFilter, setDisplayFilter] = useState(filterString)
 
     useEffect(()=>{
         let filterCount = 0
 
         if(currentFilter.description.trim().length > 0){
-            filterString += `Merkit:'${currentFilter.description}' `
+            filterString += `Merkit: "${currentFilter.description}", `
             filterCount ++
         }
         if(currentFilter.income == "on"){
@@ -58,11 +58,16 @@ export default function Filter(){
                 Suodata tapahtumia
             </button>
             {displayFilter.length > 0 && (
-            <span className="m-2 p-2 rounded-xl bg-emerald-200">
+                <>
+            <span className="ml-2 my-2 font-bold p-2 rounded-l-xl bg-emerald-200">
+                Suodatus Päällä:
+            </span>
+            <span className="my-2 p-2 rounded-r-xl bg-emerald-200">
                 {displayFilter}
             </span>
+                </>
             )}
-        {toggleFilterForm ?<FilterForm closeForm={setToggleFilterForm}/> : null }
+        {toggleFilterForm ?<FilterForm closeForm={handleToggle}/> : null }
         </div>
     )
 }
