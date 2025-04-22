@@ -44,6 +44,8 @@ describe("TransactionsDisplay component tests", ()=>{
     ]
 
     const mockcontext = {
+        fetchingAll: false,
+        fetchingAllError: false,
         filteredTransactions: mockData
     }
 
@@ -63,5 +65,48 @@ describe("TransactionsDisplay component tests", ()=>{
             expect(elemAmount).toBeInTheDocument()
             expect(elemCategory).toBeInTheDocument()
         }
+    })
+
+    test("correctly display error message if fetching data fails", ()=>{
+        mockcontext.fetchingAllError = true
+
+        render(
+            <TransactionContext.Provider value={mockcontext}>
+                <TransactionsDisplay />
+            </TransactionContext.Provider>
+        )
+
+        const error = screen.getByText("Virhe tapahtumia haettaessa", {exact:false})
+
+        expect(error).toBeInTheDocument()
+    })
+
+    test("Display message informing the user that no transactions were found", ()=>{
+        mockcontext.filteredTransactions = []
+        mockcontext.fetchingAllError = false
+
+        render(
+            <TransactionContext.Provider value={mockcontext}>
+                <TransactionsDisplay />
+            </TransactionContext.Provider>
+        )
+
+        const notFoundMsg = screen.getByText("ei löytynyt", {exact:false})
+
+        expect(notFoundMsg).toBeInTheDocument()
+    })
+
+    test("Displaying message when fetching data", ()=>{
+        mockcontext.fetchingAll = true
+
+        render(
+            <TransactionContext.Provider value={mockcontext}>
+                <TransactionsDisplay />
+            </TransactionContext.Provider>
+        )
+
+        const fetchingMsg = screen.getByText("Tapahtumia haetaan...", {exact:false})
+
+        expect(fetchingMsg).toBeInTheDocument()
     })
 })
