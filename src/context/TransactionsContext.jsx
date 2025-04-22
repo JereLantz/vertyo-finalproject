@@ -7,6 +7,8 @@ export const TransactionContext = createContext({
     showDelModal: false,
     itemToDelete: {},
     currentFilter: {},
+    fetchingAll: false,
+    fetchingAllError: false,
     setFilter: ()=>{}, 
     removeFilter: ()=>{}, 
     showDeleteConfirm: ()=>{},
@@ -31,6 +33,8 @@ export default function TransactionContextProvider({children}){
         other: "on",
     })
     const [filteredTransactions, setFilteredTransactions] = useState([])
+    const [fetchingAll, setFetchingAll] = useState(false)
+    const [fetchingAllError, setFetchingAllError] = useState(false)
 
     useEffect(()=>{
         getAllTransactions()
@@ -73,14 +77,19 @@ export default function TransactionContextProvider({children}){
     }
 
     async function getAllTransactions(){
+        setFetchingAll(true)
+
         const response = await fetch("https://www.cc.puv.fi/~e2301755/reactfinal/back.php")
         if(!response.ok){
             console.log("Network error fetching data")
+            setFetchingAll(false)
+            setFetchingAllError(true)
             return
         }
         const resData = await response.json()
         console.log(resData)
         setTransactions(resData)
+        setFetchingAll(false)
     }
 
     async function addNewTransaction(newTransaction){
@@ -187,6 +196,8 @@ export default function TransactionContextProvider({children}){
         showDelModal,
         itemToDelete,
         currentFilter,
+        fetchingAll,
+        fetchingAllError,
         setFilter,
         removeFilter,
         showDeleteConfirm,
