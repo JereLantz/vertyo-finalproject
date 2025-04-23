@@ -50,7 +50,7 @@ export default function AddNewTransaction(){
 
     const inputStyle = "border rounded mx-2"
     return(
-        <div className="m-2">
+        <div className="m-2 border p-2">
             <form action={formAction}>
                 <div className="my-1">
                     <label htmlFor="newTaDesc" className="font-bold">Kuvaus:</label>

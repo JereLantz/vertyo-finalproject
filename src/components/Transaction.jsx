@@ -82,10 +82,10 @@ export default function Transaction({transaction}){
                     </select>
                     <input disabled={isPending} name="amount"defaultValue={formState.values.amount} className="border rounded mr-2 px-1"/>
                     {isPending && <span className="m-2">Päivitetään...</span>}
-                    <button disabled={isPending} type={"button"} onClick={handleCancelModify} className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-stone-200 hover:bg-stone-300">
+                    <button disabled={isPending} type={"button"} onClick={handleCancelModify} className="border hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-stone-200 hover:bg-stone-300">
                         Peruuta
                     </button>
-                    <button disabled={isPending} type="submit" className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-yellow-200 hover:bg-yellow-300">
+                    <button disabled={isPending} type="submit" className="border hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-yellow-200 hover:bg-yellow-300">
                         Vahvista
                     </button>
                 </form>
@@ -100,13 +100,13 @@ export default function Transaction({transaction}){
             </>
         ):(
             <>
-                <p className="m-2">{transaction.description}</p>
-                <p className="m-2">{transaction.category}</p>
-                <p className="m-2">{transaction.amount}€</p>
-                <button onClick={handleModify} className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-yellow-200 hover:bg-yellow-300">
+                <p className="m-2 pr-8">{transaction.description}</p>
+                <p className="m-2 pr-8">{transaction.category}</p>
+                <p className="m-2 pr-8">{transaction.amount}€</p>
+                <button onClick={handleModify} className="border hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-yellow-200 hover:bg-yellow-300">
                     Muokkaa
                 </button>
-                <button onClick={()=> handleDelete(transaction)} className="hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-red-300 hover:bg-red-400">
+                <button onClick={()=> handleDelete(transaction)} className="border hover:cursor-pointer py-2 px-1.5 mx-1 rounded-xl bg-red-300 hover:bg-red-400">
                     Poista
                 </button>
             </>

@@ -10,7 +10,7 @@ export default function TotalTracker(){
     },[filteredTransactions])
 
     return(
-        <div className="bg-blue-400 p-2">
+        <div className="m-2 border bg-blue-400 p-2">
             <h2 className="text-2xl">Saldo:</h2>
             <p className="text-xl">{total.toFixed(2)} €</p>
         </div>

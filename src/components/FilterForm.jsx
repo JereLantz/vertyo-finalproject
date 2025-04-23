@@ -39,7 +39,7 @@ export default function FilterForm({closeForm}){
     const [formState, formAction] = useActionState(filterFormAction, {errors:null, enteredValues:currentFilter})
 
     return(
-        <div className="border p-2">
+        <div className="m-2 border p-2">
             <form action={formAction}>
                 <label htmlFor="filterDesc">Kuvaus:</label>
                 <input defaultValue={formState.enteredValues?.description} className="border rounded mx-1 px-1" id="filterDesc" name="filterDesc" placeholder="Kuvauksen perusteella"/>

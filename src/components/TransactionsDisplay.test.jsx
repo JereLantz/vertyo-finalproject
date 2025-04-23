@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import TransactionsDisplay from "./TransactionsDisplay"
-import userEvent from "@testing-library/user-event";
 import { TransactionContext } from "../context/TransactionsContext";
 
 describe("TransactionsDisplay component tests", ()=>{
@@ -46,7 +45,16 @@ describe("TransactionsDisplay component tests", ()=>{
     const mockcontext = {
         fetchingAll: false,
         fetchingAllError: false,
-        filteredTransactions: mockData
+        filteredTransactions: mockData,
+        currentFilter:{
+            description: "",
+            income: "on",
+            food: "on",
+            expence: "on",
+            entertainment: "on",
+            gambling: "on",
+            other: "on",
+        },
     }
 
     test("Correctly render array of objects", ()=>{
@@ -68,10 +76,11 @@ describe("TransactionsDisplay component tests", ()=>{
     })
 
     test("correctly display error message if fetching data fails", ()=>{
-        mockcontext.fetchingAllError = true
+        const mockContextCopy = {...mockcontext}
+        mockContextCopy.fetchingAllError = true
 
         render(
-            <TransactionContext.Provider value={mockcontext}>
+            <TransactionContext.Provider value={mockContextCopy}>
                 <TransactionsDisplay />
             </TransactionContext.Provider>
         )
@@ -82,11 +91,12 @@ describe("TransactionsDisplay component tests", ()=>{
     })
 
     test("Display message informing the user that no transactions were found", ()=>{
-        mockcontext.filteredTransactions = []
-        mockcontext.fetchingAllError = false
+        const mockContextCopy = {...mockcontext}
+        mockContextCopy.filteredTransactions = []
+        mockContextCopy.fetchingAllError = false
 
         render(
-            <TransactionContext.Provider value={mockcontext}>
+            <TransactionContext.Provider value={mockContextCopy}>
                 <TransactionsDisplay />
             </TransactionContext.Provider>
         )

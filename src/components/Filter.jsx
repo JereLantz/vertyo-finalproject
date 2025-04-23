@@ -1,9 +1,7 @@
 import { use, useEffect, useState } from "react";
-import FilterForm from "./FilterForm";
 import { TransactionContext } from "../context/TransactionsContext";
 
 export default function Filter(){
-    const [toggleFilterForm, setToggleFilterForm] = useState(false)
     const {currentFilter} = use(TransactionContext)
     let filterString = ""
     const [displayFilter, setDisplayFilter] = useState(filterString)
@@ -12,11 +10,11 @@ export default function Filter(){
         let filterCount = 0
 
         if(currentFilter.description.trim().length > 0){
-            filterString += `Merkit: "${currentFilter.description}", `
+            filterString += `Sisältää merkit: "${currentFilter.description}", `
             filterCount ++
         }
         if(currentFilter.income == "on"){
-            filterString += "Tulot, "
+            filterString += "Palkka, "
             filterCount ++
         }
         if(currentFilter.food == "on"){
@@ -47,27 +45,18 @@ export default function Filter(){
             setDisplayFilter(filterString)
         }
     },[currentFilter])
-
-    function handleToggle(){
-        setToggleFilterForm((p)=>!p)
-
-    }
     return(
-        <div className="mt-2">
-            <button onClick={handleToggle} className="hover:cursor-pointer p-2 my-2 rounded-xl bg-amber-100 hover:bg-amber-200">
-                Suodata tapahtumia
-            </button>
+        <div>
             {displayFilter.length > 0 && (
                 <>
-            <span className="ml-2 my-2 font-bold p-2 rounded-l-xl bg-emerald-200">
-                Suodatus Päällä:
+            <span className="my-2 font-bold p-2 rounded-l-xl bg-emerald-200">
+                Suodatus Päällä. Näytetään:
             </span>
             <span className="my-2 p-2 rounded-r-xl bg-emerald-200">
                 {displayFilter}
             </span>
                 </>
             )}
-        {toggleFilterForm ?<FilterForm closeForm={handleToggle}/> : null }
         </div>
     )
 }

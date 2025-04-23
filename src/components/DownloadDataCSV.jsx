@@ -28,11 +28,11 @@ export default function Reactcsv(){
     return(
         <>
         {filteredTransactions.length == 0 ?(
-            <button className="rounded-xl p-2 bg-amber-100 hover:bg-amber-200">
+            <button className="border rounded-xl p-2 bg-yellow-100 hover:bg-yellow-200">
             Lataa tapahtumat
             </button>
         ):(
-        <CSVLink data={filteredTransactions} target="_blank" className="rounded-xl p-2 bg-amber-100 hover:bg-amber-200" filename="transactions.csv">
+        <CSVLink data={filteredTransactions} target="_blank" className="border rounded-xl p-2 bg-yellow-100 hover:bg-yellow-200" filename="transactions.csv">
             Lataa tapahtumat
         </CSVLink>
         )}
