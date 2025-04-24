@@ -5,7 +5,7 @@ export default function Transaction({transaction}){
     const {showDeleteConfirm, updateTransaction} = use(TransactionContext)
     const [modify, setModify] = useState(false)
 
-    async function handleUpdateAction(current, formData){
+    async function handleUpdateAction(_, formData){
         const errors = []
 
         const newDesc = formData.get("description")
@@ -14,42 +14,49 @@ export default function Transaction({transaction}){
 
         const newAmount = Number(newAmountString)
 
-        const updatedTransaction = current.values
-        updatedTransaction.description = newDesc
-        updatedTransaction.category = newCategory
-        updatedTransaction.amount = newAmount
+        //const updatedTransaction = current.values
+        const transactionUpdated = {...transaction}
+        transactionUpdated.description = newDesc
+        transactionUpdated.category = newCategory
+        transactionUpdated.amount = newAmount
 
         if(newDesc.trim().length < 3){
             errors.push("Anna kuvaus tapahtumalle. Vähintään 3 merkkiä")
-            updatedTransaction.description = transaction.description
+            transactionUpdated.description = transaction.description
         }
 
         if(!newAmount){
             errors.push("Syötä vain numeroita määrä kenttään.")
-            updatedTransaction.amount = transaction.amount
+            transactionUpdated.amount = transaction.amount
         }
 
         if(!newCategory || !newCategory.trim()){
             errors.push("Tapahtumalla tulisi olla kategoria")
-            updatedTransaction.category = transaction.category
+            transactionUpdated.category = transaction.category
         }
 
         if(errors.length > 0){
-            return {errors, values:updatedTransaction}
+            return {errors, values:transactionUpdated}
         }
 
-        const res = await updateTransaction(updatedTransaction)
+        if(newAmount >= 0){
+            transactionUpdated.type = "income"
+        }
+        else{
+            transactionUpdated.type = "expense"
+        }
+        const res = await updateTransaction(transactionUpdated)
 
         if(!res.success){
             errors.push("Virhe tapahtuman päivityksessä")
         }
 
         if(errors.length > 0){
-            return {errors, values:updatedTransaction}
+            return {errors, values:transactionUpdated}
         }
 
         setModify(false)
-        return {errors:null, values:updatedTransaction}
+        return {errors:null, values:transactionUpdated}
     }
 
     const [formState, updateAction, isPending] = useActionState(handleUpdateAction, {errors:null, values:transaction})

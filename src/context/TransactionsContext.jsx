@@ -46,7 +46,6 @@ export default function TransactionContextProvider({children}){
 
     function filterTransactions(filter){
         setFilteredTransactions(transactions.filter((transa)=>{
-            console.log(transa)
             if(!filter){
                 return true
             }
@@ -73,7 +72,6 @@ export default function TransactionContextProvider({children}){
             }
             return false
         }))
-        console.log(filteredTransactions)
     }
 
     async function getAllTransactions(){
@@ -87,7 +85,6 @@ export default function TransactionContextProvider({children}){
             return
         }
         const resData = await response.json()
-        console.log(resData)
         setTransactions(resData)
         setFetchingAll(false)
     }
@@ -135,7 +132,7 @@ export default function TransactionContextProvider({children}){
         }
 
         setTransactions((p) => {
-            const updatedArr = [...p]
+            const updatedArr = p.map(item=>({...item}))
             const updatedIndex = updatedArr.findIndex(ta=>ta.id === updatedTransaction.id)
             updatedArr[updatedIndex] = updatedTransaction
             return updatedArr
