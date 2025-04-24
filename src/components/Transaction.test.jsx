@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Transaction from "./Transaction"
 import userEvent from "@testing-library/user-event";
-import TransactionContextProvider, { TransactionContext } from "../context/TransactionsContext";
-import { exact } from "prop-types";
+import { TransactionContext } from "../context/TransactionsContext";
 
 describe("Individual transaction tests", ()=>{
         const transaction = {
@@ -10,6 +9,7 @@ describe("Individual transaction tests", ()=>{
             description:"testi1",
             amount:10,
             category:"viihde",
+            type:"income",
         }
 
     test("Renders the item", ()=>{
